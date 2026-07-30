@@ -1,4 +1,4 @@
-ï»¿// ---- Load artworks from HTML data, fallback to defaults ----
+// ---- Load artworks from HTML data, fallback to defaults ----
 function loadArtworks() {
   var script = document.getElementById("artworks-data");
   if (script) {
@@ -8,8 +8,8 @@ function loadArtworks() {
   {
     "id": "01",
     "source": "assets/photos/01.svg",
-    "title": "æ™¨å…‰",
-    "caption": "æ¸…æ™¨ï¼Œæˆ¿é—´è¿˜æ²¡æœ‰å®Œå…¨é†’æ¥ã€‚",
+    "title": "³¿¹â",
+    "caption": "Çå³¿£¬·¿¼ä»¹Ã»ÓĞÍêÈ«ĞÑÀ´¡£",
     "layout": "tall",
     "colors": [
       "#9a6251",
@@ -20,8 +20,8 @@ function loadArtworks() {
   {
     "id": "02",
     "source": "assets/photos/02.svg",
-    "title": "çª—è¾¹",
-    "caption": "æŠŠæ²¡æœ‰è¯´å‡ºå£çš„è¯ï¼Œç•™ç»™å…‰çº¿ã€‚",
+    "title": "´°±ß",
+    "caption": "°ÑÃ»ÓĞËµ³ö¿ÚµÄ»°£¬Áô¸ø¹âÏß¡£",
     "layout": "landscape",
     "colors": [
       "#7f756a",
@@ -32,8 +32,8 @@ function loadArtworks() {
   {
     "id": "03",
     "source": "assets/photos/03.svg",
-    "title": "åˆå",
-    "caption": "é˜³å…‰æ…¢ä¸‹æ¥ï¼Œå½±å­ä¹Ÿæœ‰äº†å½¢çŠ¶ã€‚",
+    "title": "Îçºó",
+    "caption": "Ñô¹âÂıÏÂÀ´£¬Ó°×ÓÒ²ÓĞÁËĞÎ×´¡£",
     "layout": "square",
     "colors": [
       "#b87b62",
@@ -44,8 +44,8 @@ function loadArtworks() {
   {
     "id": "04",
     "source": "assets/photos/04.svg",
-    "title": "èµ°å‡ºå»",
-    "caption": "å‡ºé—¨å‰ï¼Œå…ˆç¡®è®¤è‡ªå·±æ­£ä»¥æ€æ ·çš„è¡¨æƒ…é¢å¯¹ä¸–ç•Œã€‚",
+    "title": "×ß³öÈ¥",
+    "caption": "³öÃÅÇ°£¬ÏÈÈ·ÈÏ×Ô¼ºÕıÒÔÔõÑùµÄ±íÇéÃæ¶ÔÊÀ½ç¡£",
     "layout": "tall",
     "colors": [
       "#79504b",
@@ -56,8 +56,8 @@ function loadArtworks() {
   {
     "id": "05",
     "source": "assets/photos/05.svg",
-    "title": "åœç•™",
-    "caption": "åœ¨ä¸€æ®µç©ºç™½é‡Œï¼Œç»ƒä¹ ä¸ç€æ€¥æˆä¸ºè°ã€‚",
+    "title": "Í£Áô",
+    "caption": "ÔÚÒ»¶Î¿Õ°×Àï£¬Á·Ï°²»×Å¼±³ÉÎªË­¡£",
     "layout": "square",
     "colors": [
       "#8c7764",
@@ -68,8 +68,8 @@ function loadArtworks() {
   {
     "id": "06",
     "source": "assets/photos/06.svg",
-    "title": "å‚æ™šçš„é•œå­",
-    "caption": "é•œå­ä¸æ˜¯ç­”æ¡ˆï¼Œåªæ˜¯ä¸€åœºå®‰é™çš„ç›¸é‡ã€‚",
+    "title": "°øÍíµÄ¾µ×Ó",
+    "caption": "¾µ×Ó²»ÊÇ´ğ°¸£¬Ö»ÊÇÒ»³¡°²¾²µÄÏàÓö¡£",
     "layout": "wide",
     "colors": [
       "#71464b",
@@ -80,8 +80,8 @@ function loadArtworks() {
   {
     "id": "07",
     "source": "assets/photos/07.svg",
-    "title": "å›å£°",
-    "caption": "é‚£äº›å¹³å‡¡çš„å¿µå¤´ï¼Œä»åœ¨å¿ƒé‡Œè½»è½»å›å“ã€‚",
+    "title": "»ØÉù",
+    "caption": "ÄÇĞ©Æ½·²µÄÄîÍ·£¬ÈÔÔÚĞÄÀïÇáÇá»ØÏì¡£",
     "layout": "tall",
     "colors": [
       "#657070",
@@ -92,8 +92,8 @@ function loadArtworks() {
   {
     "id": "08",
     "source": "assets/photos/08.svg",
-    "title": "å°å°çš„é£",
-    "caption": "é£ç»è¿‡çš„æ—¶å€™ï¼Œåˆšå¥½æŠŠä»Šå¤©å¹å¾—æ¾ä¸€ç‚¹ã€‚",
+    "title": "Ğ¡Ğ¡µÄ·ç",
+    "caption": "·ç¾­¹ıµÄÊ±ºò£¬¸ÕºÃ°Ñ½ñÌì´µµÃËÉÒ»µã¡£",
     "layout": "square",
     "colors": [
       "#8a6e5b",
@@ -104,8 +104,8 @@ function loadArtworks() {
   {
     "id": "09",
     "source": "assets/photos/09.svg",
-    "title": "è·¯è¿‡",
-    "caption": "èµ°è¿‡ç†Ÿæ‚‰çš„åœ°æ–¹ï¼Œä¹Ÿåƒç¬¬ä¸€æ¬¡è®¤è¯†è‡ªå·±ã€‚",
+    "title": "Â·¹ı",
+    "caption": "×ß¹ıÊìÏ¤µÄµØ·½£¬Ò²ÏñµÚÒ»´ÎÈÏÊ¶×Ô¼º¡£",
     "layout": "landscape",
     "colors": [
       "#56635c",
@@ -116,8 +116,8 @@ function loadArtworks() {
   {
     "id": "10",
     "source": "assets/photos/10.svg",
-    "title": "æ²‰é™",
-    "caption": "æŠŠæ³¨æ„åŠ›äº¤è¿˜ç»™å‘¼å¸å’Œçœ¼å‰çš„è¿™ä¸€åˆ»ã€‚",
+    "title": "³Á¾²",
+    "caption": "°Ñ×¢ÒâÁ¦½»»¹¸øºôÎüºÍÑÛÇ°µÄÕâÒ»¿Ì¡£",
     "layout": "square",
     "colors": [
       "#5d4c4a",
@@ -128,8 +128,8 @@ function loadArtworks() {
   {
     "id": "11",
     "source": "assets/photos/11.svg",
-    "title": "å¤œè‰²ä¹‹å‰",
-    "caption": "å¤©é»‘ä»¥å‰ï¼Œä»æœ‰ä¸€äº›æ¸©æŸ”å€¼å¾—è¢«çœ‹è§ã€‚",
+    "title": "Ò¹É«Ö®Ç°",
+    "caption": "ÌìºÚÒÔÇ°£¬ÈÔÓĞÒ»Ğ©ÎÂÈáÖµµÃ±»¿´¼û¡£",
     "layout": "tall",
     "colors": [
       "#594552",
@@ -140,8 +140,8 @@ function loadArtworks() {
   {
     "id": "12",
     "source": "assets/photos/12.svg",
-    "title": "å›åˆ°æ—¥å¸¸",
-    "caption": "æ‰€æœ‰æ•…äº‹æœ€åï¼Œéƒ½å›åˆ°å¹³é™è€ŒçœŸå®çš„è‡ªå·±ã€‚",
+    "title": "»Øµ½ÈÕ³£",
+    "caption": "ËùÓĞ¹ÊÊÂ×îºó£¬¶¼»Øµ½Æ½¾²¶øÕæÊµµÄ×Ô¼º¡£",
     "layout": "wide",
     "colors": [
       "#776559",
@@ -288,6 +288,13 @@ document.addEventListener("keydown", function(e) {
   var NF_SITE   = "aa80fdc1-ee5f-4ca5-905a-b52080907d60";
   var NF_SITE_URL = "https://tamen-derichang.netlify.app";
 
+  // GitHub API credentials for deploying to GitHub Pages
+  var GH_TOKEN  = "";  // Áô¿ÕÊ¹ÓÃ±¾µØ²¿Êğ·şÎñÆ÷£¨ÔËĞĞ node deploy-server.js£©
+  var GH_OWNER  = "kin-007";
+  var GH_REPO   = "tamen-derichang";
+  var GH_BRANCH = "main";
+  var GH_API    = "https://api.github.com";
+
   var isAdmin = false;
   var textChanges = new Map();
   var imageChanges = new Map();
@@ -315,7 +322,7 @@ document.addEventListener("keydown", function(e) {
         loginDlg.close();
         enterAdminMode();
       } else {
-        errEl.textContent = "è´¦å·æˆ–å¯†ç é”™è¯¯";
+        errEl.textContent = "ÕËºÅ»òÃÜÂë´íÎó";
         passInp.value = "";
         passInp.focus();
       }
@@ -367,10 +374,10 @@ document.addEventListener("keydown", function(e) {
   // ---- enterAdminMode ----
   function enterAdminMode() {
     adminBar.hidden = false;
-    setStatus("å°±ç»ª", "idle");
+    setStatus("¾ÍĞ÷", "idle");
     enableTextEditing();
     enableImageEditing();
-    if (loginBtn) { loginBtn.textContent = "é€€å‡º"; }
+    if (loginBtn) { loginBtn.textContent = "ÍË³ö"; }
   }
 
   // ---- leaveAdminMode ----
@@ -381,7 +388,7 @@ document.addEventListener("keydown", function(e) {
     imageChanges.clear();
     disableTextEditing();
     disableImageEditing();
-    if (loginBtn) { loginBtn.textContent = "ç™»å½•"; }
+    if (loginBtn) { loginBtn.textContent = "µÇÂ¼"; }
   }
 
   // ---- openImageDB ----
@@ -479,7 +486,7 @@ document.addEventListener("keydown", function(e) {
       return;
     }
     saveChangesToLocal();
-    setStatus("å·²ä¿å­˜åˆ°æœ¬åœ°ç¼“å­˜", "done");
+    setStatus("ÒÑ±£´æµ½±¾µØ»º´æ", "done");
     setTimeout(function () {
       leaveAdminMode();
     }, 600);
@@ -500,17 +507,17 @@ document.addEventListener("keydown", function(e) {
 
   // ---- TEXT_FIELDS ----
   var TEXT_FIELDS = [
-    { sel: ".hero__copy .eyebrow",            label: "å‰¯æ ‡é¢˜" },
-    { sel: "#site-title",                     label: "ä¸»æ ‡é¢˜" },
-    { sel: ".hero__intro",                    label: "ç®€ä»‹" },
-    { sel: ".hero__signature",                label: "ç­¾å" },
-    { sel: "#gallery-title",                  label: "ç”»å»Šæ ‡é¢˜" },
-    { sel: ".section-description",            label: "ç”»å»Šæè¿°" },
-    { sel: "#statement-title",                label: "è‡ªè¿°æ ‡é¢˜" },
-    { sel: ".statement__body > p:nth-of-type(2)", label: "è‡ªè¿°æ­£æ–‡1" },
-    { sel: ".statement__body > p:nth-of-type(3)", label: "è‡ªè¿°æ­£æ–‡2" },
-    { sel: ".statement__signature",           label: "è‡ªè¿°ç­¾å" },
-    { sel: ".site-footer span:first-child",   label: "é¡µè„šæ ‡é¢˜" },
+    { sel: ".hero__copy .eyebrow",            label: "¸±±êÌâ" },
+    { sel: "#site-title",                     label: "Ö÷±êÌâ" },
+    { sel: ".hero__intro",                    label: "¼ò½é" },
+    { sel: ".hero__signature",                label: "Ç©Ãû" },
+    { sel: "#gallery-title",                  label: "»­ÀÈ±êÌâ" },
+    { sel: ".section-description",            label: "»­ÀÈÃèÊö" },
+    { sel: "#statement-title",                label: "×ÔÊö±êÌâ" },
+    { sel: ".statement__body > p:nth-of-type(2)", label: "×ÔÊöÕıÎÄ1" },
+    { sel: ".statement__body > p:nth-of-type(3)", label: "×ÔÊöÕıÎÄ2" },
+    { sel: ".statement__signature",           label: "×ÔÊöÇ©Ãû" },
+    { sel: ".site-footer span:first-child",   label: "Ò³½Å±êÌâ" },
   ];
 
   // ---- enableTextEditing ----
@@ -520,7 +527,7 @@ document.addEventListener("keydown", function(e) {
       if (!el) return;
       el.contentEditable = "true";
       el.classList.add("admin-editable");
-      el.title = "ç‚¹å‡»ç¼–è¾‘ " + item.label;
+      el.title = "µã»÷±à¼­ " + item.label;
       if (textChanges.has(item.sel)) el.innerHTML = textChanges.get(item.sel);
       el.addEventListener("input", function () {
         textChanges.set(item.sel, el.innerHTML);
@@ -530,7 +537,7 @@ document.addEventListener("keydown", function(e) {
       if (el.closest(".admin-editable")) return;
       el.contentEditable = "true";
       el.classList.add("admin-editable");
-      el.title = "ç‚¹å‡»ç¼–è¾‘ä½œå“æ ‡é¢˜";
+      el.title = "µã»÷±à¼­×÷Æ·±êÌâ";
       el.addEventListener("input", function () {
         var newTitle = el.textContent;
         if (artworks[i]) artworks[i].title = newTitle;
@@ -577,7 +584,7 @@ document.addEventListener("keydown", function(e) {
 
     var overlay = document.createElement("span");
     overlay.className = "admin-image-overlay";
-    overlay.textContent = "æ›¿æ¢å›¾ç‰‡";
+    overlay.textContent = "Ìæ»»Í¼Æ¬";
     wrap.appendChild(overlay);
 
     var input = document.createElement("input");
@@ -591,14 +598,16 @@ document.addEventListener("keydown", function(e) {
       var file = input.files && input.files[0];
       if (!file) return;
       var reader = new FileReader();
-      reader.onload = function (e) {
-        var dataUrl = e.target.result;
+      reader.onload = async function (e) {
+        var rawDataUrl = e.target.result;
+        // Compress large images to reduce storage and deployment size
+        var dataUrl = await compressImage(rawDataUrl);
         img.src = dataUrl;
-        var ext = (file.name.match(/\.(\w+)$/) || [,"jpg"])[1];
+        var ext = "jpg";
         var newName = "upload_" + Date.now() + "_" + Math.random().toString(36).slice(2,6) + "." + ext;
         var newPath = "assets/photos/" + newName;
         imageChanges.set(key, { file: file.name, dataUrl: dataUrl, newPath: newPath });
-        overlay.textContent = file.name + " âœ“";
+        overlay.textContent = file.name + " ?";
         if (key === "hero-image" && artworks[0]) {
           artworks[0].source = newPath;
         } else if (key && key.startsWith("gallery-")) {
@@ -611,6 +620,41 @@ document.addEventListener("keydown", function(e) {
     });
 
     overlay.addEventListener("click", function () { input.click(); });
+  }
+
+  // ---- compressImage ----
+  // Compresses an image to reduce file size for storage and deployment
+  function compressImage(dataUrl, maxWidth, quality) {
+    maxWidth = maxWidth || 2000;
+    quality = quality || 0.85;
+    return new Promise(function (resolve) {
+      var img = new Image();
+      img.onload = function () {
+        var w = img.width;
+        var h = img.height;
+        // Only compress if image is larger than maxWidth or likely > 2MB
+        var dataSize = dataUrl.length * 0.75; // approximate byte size from base64
+        if (w <= maxWidth && h <= maxWidth && dataSize < 2 * 1024 * 1024) {
+          resolve(dataUrl);
+          return;
+        }
+        // Scale down
+        if (w > maxWidth || h > maxWidth) {
+          var ratio = Math.min(maxWidth / w, maxWidth / h);
+          w = Math.round(w * ratio);
+          h = Math.round(h * ratio);
+        }
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL("image/jpeg", quality));
+      };
+      img.onerror = function () { resolve(dataUrl); };
+      img.src = dataUrl;
+    });
+  }
   }
 
   // ---- sha256Hex ----
@@ -695,13 +739,145 @@ document.addEventListener("keydown", function(e) {
     return resp.status === 204 ? null : resp.json();
   }
 
+  // ---- githubApiFetch ----
+  async function githubApiFetch(path, opts) {
+    opts = opts || {};
+    var url = GH_API + path;
+    var headers = {
+      "Authorization": "Bearer " + GH_TOKEN,
+      "Accept": "application/vnd.github+json"
+    };
+    if (opts.body && typeof opts.body === "string") {
+      headers["Content-Type"] = opts.contentType || "application/json";
+    }
+    var resp = await fetch(url, {
+      method: opts.method || "GET",
+      headers: headers,
+      body: opts.body || undefined
+    });
+    if (!resp.ok) {
+      var errText = await resp.text();
+      throw new Error("GitHub API " + resp.status + ": " + errText.slice(0, 300));
+    }
+    return resp.status === 204 ? null : resp.json();
+  }
+
+  // ---- deployToGitHub ----
+  // Uploads changed files to GitHub via Git Data API, triggering GitHub Actions deployment
+  async function deployToGitHub(files) {
+    // files: { "path/in/repo": content_string }
+
+    // Step 1: Get the current head commit SHA and tree SHA
+    setStatus("»ñÈ¡²Ö¿â×´Ì¬...", "busy");
+    var refData = await githubApiFetch("/repos/" + GH_OWNER + "/" + GH_REPO + "/git/ref/heads/" + GH_BRANCH);
+    var headSha = refData.object.sha;
+    var commitData = await githubApiFetch("/repos/" + GH_OWNER + "/" + GH_REPO + "/git/commits/" + headSha);
+    var baseTreeSha = commitData.tree.sha;
+
+    // Step 2: Create blobs for each file
+    setStatus("ÉÏ´«ÎÄ¼şµ½ GitHub...", "busy");
+    var treeItems = [];
+    var filePaths = Object.keys(files);
+
+    for (var fi = 0; fi < filePaths.length; fi++) {
+      var fp = filePaths[fi];
+      var content = files[fp];
+
+      // Check if the file is a binary (data URL for images)
+      var isImage = typeof content === "string" && content.indexOf("data:image/") === 0;
+
+      if (isImage) {
+        // For images, we need to convert data URL to base64 bytes
+        var parts = content.split(",");
+        var mimeMatch = content.match(/^data:image\/(\w+);/);
+        var ext = mimeMatch ? mimeMatch[1].replace("jpeg", "jpg") : "jpg";
+        var rawBase64 = parts[1];
+        // GitHub's blob API accepts base64 for binary content
+        var blobResp = await githubApiFetch("/repos/" + GH_OWNER + "/" + GH_REPO + "/git/blobs", {
+          method: "POST",
+          body: JSON.stringify({
+            content: rawBase64,
+            encoding: "base64"
+          })
+        });
+        treeItems.push({
+          path: fp,
+          mode: "100644",
+          type: "blob",
+          sha: blobResp.sha
+        });
+      } else {
+        // Text file
+        var blobResp = await githubApiFetch("/repos/" + GH_OWNER + "/" + GH_REPO + "/git/blobs", {
+          method: "POST",
+          body: JSON.stringify({
+            content: content,
+            encoding: "utf-8"
+          })
+        });
+        treeItems.push({
+          path: fp,
+          mode: "100644",
+          type: "blob",
+          sha: blobResp.sha
+        });
+      }
+    }
+
+    // Step 3: Create a new tree
+    setStatus("´´½¨Ìá½»...", "busy");
+    var treeResp = await githubApiFetch("/repos/" + GH_OWNER + "/" + GH_REPO + "/git/trees", {
+      method: "POST",
+      body: JSON.stringify({
+        base_tree: baseTreeSha,
+        tree: treeItems
+      })
+    });
+    var newTreeSha = treeResp.sha;
+
+    // Step 4: Create a commit
+    var commitMsg = "Í¨¹ı¹ÜÀíÃæ°å¸üĞÂÄÚÈİÓÚ " + new Date().toLocaleString("zh-CN");
+    var commitResp = await githubApiFetch("/repos/" + GH_OWNER + "/" + GH_REPO + "/git/commits", {
+      method: "POST",
+      body: JSON.stringify({
+        message: commitMsg,
+        tree: newTreeSha,
+        parents: [headSha]
+      })
+    });
+    var newCommitSha = commitResp.sha;
+
+    // Step 5: Update the branch reference
+    await githubApiFetch("/repos/" + GH_OWNER + "/" + GH_REPO + "/git/refs/heads/" + GH_BRANCH, {
+      method: "PATCH",
+      body: JSON.stringify({
+        sha: newCommitSha,
+        force: false
+      })
+    });
+
+    return true;
+  }
+
+  // ---- gatherChangedImages ----
+  // Collects image changes from the current session and returns { "assets/photos/xxx.ext": dataUrl }
+  async function gatherChangedImages() {
+    var result = {};
+    imageChanges.forEach(function (info, key) {
+      if (info.newPath && info.dataUrl) {
+        result[info.newPath] = info.dataUrl;
+      }
+    });
+    return result;
+  }
+
   // ---- doSaveAndDeploy ----
   async function doSaveAndDeploy() {
     if (deployInProgress) return;
     deployInProgress = true;
     saveBtn.disabled = true;
-    saveBtn.textContent = "å‘å¸ƒä¸­...";
-    setStatus("æ­£åœ¨å‘å¸ƒ...", "busy");
+    saveBtn.textContent = "·¢²¼ÖĞ...";
+    setStatus("ÕıÔÚ·¢²¼...", "busy");
 
     // Step 1: Save to localStorage first so changes are never lost
     saveChangesToLocal();
@@ -718,11 +894,9 @@ document.addEventListener("keydown", function(e) {
     }
     if (!cssContent) cssContent = "/* styles not available */";
 
-    // Step 3: Try proxy function first (same origin, no CORS), fall back to direct API
-    var deployOk = false;
-        // Step 3: Try local deploy server first
+    // Step 3: Try local deploy server first (port 4174)
     try {
-      setStatus("æ­£åœ¨é€šè¿‡æœ¬åœ°ä»£ç†éƒ¨ç½²...", "busy");
+      setStatus("ÕıÔÚÍ¨¹ı±¾µØ²¿Êğ·şÎñÆ÷·¢²¼...", "busy");
       var localResp = await fetch("http://localhost:4174/deploy", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -731,172 +905,63 @@ document.addEventListener("keydown", function(e) {
         })
       });
       if (localResp.ok) {
-        deployOk = true;
-        setStatus("å‘å¸ƒæˆåŠŸ! å³å°†åˆ·æ–°...", "done");
+        setStatus("·¢²¼³É¹¦! µÈ´ı GitHub Pages ¹¹½¨...", "done");
         try { localStorage.removeItem("admin-text-changes"); localStorage.removeItem("admin-image-index"); } catch(e) {}
         openImageDB().then(function(db){
           var tx = db.transaction("images", "readwrite");
           tx.objectStore("images").clear();
         }).catch(function(){});
-        await new Promise(function (r) { setTimeout(r, 3000); });
+        await new Promise(function (r) { setTimeout(r, 2000); });
         textChanges.clear();
         imageChanges.clear();
         location.reload();
         return;
+      } else {
+        throw new Error("±¾µØ·şÎñÆ÷ÏìÓ¦Ê§°Ü");
       }
-    } catch (localErr) {}
-
-    // Try Netlify function proxy (works from live site)
-    try {
-      setStatus("æ­£åœ¨é€šè¿‡çº¿ä¸Šä»£ç†éƒ¨ç½²...", "busy");
-      var proxyResp = await fetch("/.netlify/functions/deploy", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          files: { "index.html": htmlContent, "styles.css": cssContent },
-          token: NF_TOKEN,
-          siteId: NF_SITE
-        })
-      });
-      if (proxyResp.ok) {
-        var proxyResult = await proxyResp.json();
-        if (proxyResult.success) {
-          deployOk = true;
-          setStatus("å‘å¸ƒæˆåŠŸ! å³å°†åˆ·æ–°...", "done");
+    } catch (localErr) {
+      // Local server unavailable, try GitHub API if token provided
+      if (GH_TOKEN) {
+        try {
+          setStatus("ÕıÔÚ²¿Êğµ½ GitHub Pages...", "busy");
+          var filesToCommit = {
+            "index.html": htmlContent,
+            "styles.css": cssContent
+          };
+          try {
+            var changedImages = await gatherChangedImages();
+            for (var imgPath in changedImages) {
+              filesToCommit[imgPath] = changedImages[imgPath];
+            }
+          } catch(e) {}
+          await deployToGitHub(filesToCommit);
+          setStatus("·¢²¼³É¹¦! µÈ´ı GitHub Pages ¹¹½¨...", "done");
           try { localStorage.removeItem("admin-text-changes"); localStorage.removeItem("admin-image-index"); } catch(e) {}
           openImageDB().then(function(db){
             var tx = db.transaction("images", "readwrite");
             tx.objectStore("images").clear();
           }).catch(function(){});
-          await new Promise(function (r) { setTimeout(r, 3000); });
+          await new Promise(function (r) { setTimeout(r, 2000); });
           textChanges.clear();
           imageChanges.clear();
           location.reload();
           return;
+        } catch (err) {
+          setStatus("·¢²¼Ê§°Ü: " + err.message + "£¨ĞŞ¸ÄÒÑ±£´æµ½±¾µØ»º´æ£¬ÇëÔËĞĞ node deploy-server.js ²¿Êğ£©", "error");
+          saveBtn.disabled = false;
+          saveBtn.textContent = "ÖØÊÔ·¢²¼";
+          deployInProgress = false;
+          return;
         }
-      }
-    } catch (proxyErr) {}    // Step 4: If proxy didn't work, try direct API (works from Netlify domain in some cases)
-    if (!deployOk) {
-      try {
-        setStatus("å°è¯•ç›´æ¥è¿æ¥ API...", "busy");
-        var liveFiles = {};
-        liveFiles["index.html"] = htmlContent;
-        liveFiles["styles.css"] = cssContent;
-
-        setStatus("è®¡ç®—æ–‡ä»¶æ‘˜è¦...", "busy");
-        var manifest = {};
-        for (var path in liveFiles) {
-          manifest[path] = await sha256Hex(liveFiles[path]);
-        }
-
-        setStatus("åˆ›å»ºéƒ¨ç½²...", "busy");
-        var deploy = await apiFetch("sites/" + NF_SITE + "/deploys", {
-          method: "POST",
-          body: JSON.stringify({ files: manifest }),
-          contentType: "application/json"
-        });
-        var deployId = deploy.id;
-        var required = deploy.required || [];
-
-        if (required.length > 0) {
-          setStatus("ä¸Šä¼ æ–‡ä»¶...", "busy");
-          var shaMap = {};
-          for (var path in liveFiles) {
-            var sha = manifest[path];
-            shaMap[sha] = { path: path, content: typeof liveFiles[path] === "string" ? new TextEncoder().encode(liveFiles[path]) : liveFiles[path] };
-          }
-          for (var ri = 0; ri < required.length; ri++) {
-            var sha = required[ri];
-            var info = shaMap[sha];
-            if (!info) continue;
-            var uploadUrl = deploy.deploy_url + "/files/" + encodeURIComponent(info.path);
-            var upResp = await fetch(uploadUrl, {
-              headers: { "Authorization": "Bearer " + NF_TOKEN, "Content-Type": "application/octet-stream" },
-              method: "PUT",
-              body: info.content
-            });
-            if (!upResp.ok) throw new Error("Upload failed for " + info.path);
-          }
-        }
-
-        setStatus("æœ€ç»ˆç¡®è®¤...", "busy");
-        var finalUrl = "https://api.netlify.com/api/v1/deploys/" + deployId;
-        var finalResp = await fetch(finalUrl, {
-          method: "POST",
-          headers: { "Authorization": "Bearer " + NF_TOKEN, "Content-Type": "application/json" },
-          body: "{}"
-        });
-        if (!finalResp.ok) {
-          if (finalResp.status === 404) {
-            var finalResp2 = await fetch(deploy.deploy_url, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: "{}"
-            });
-            if (!finalResp2.ok) throw new Error("Finalize failed");
-          } else {
-            throw new Error("Finalize failed: " + (await finalResp.text()).slice(0, 100));
-          }
-        }
-
-        deployOk = true;
-        setStatus("å‘å¸ƒæˆåŠŸ! å³å°†åˆ·æ–°...", "done");
-        try { localStorage.removeItem("admin-text-changes"); localStorage.removeItem("admin-image-index"); } catch(e) {}
-        openImageDB().then(function(db){
-          var tx = db.transaction("images", "readwrite");
-          tx.objectStore("images").clear();
-        }).catch(function(){});
-        await new Promise(function (r) { setTimeout(r, 5000); });
-        textChanges.clear();
-        imageChanges.clear();
-        location.reload();
-        return;
-
-      } catch (err) {
-        setStatus("å‘å¸ƒå¤±è´¥: " + (err.message.indexOf("credits") >= 0 ? "Netlify æ„å»ºæ—¶é—´ç”¨å®Œäº†ï¼Œè¯·è¿è¡Œæœ¬åœ° deploy.cmd éƒ¨ç½²" : err.message) + "ï¼ˆä¿®æ”¹å·²ä¿å­˜åˆ°æœ¬åœ°ç¼“å­˜ï¼‰", "error");
+      } else {
+        // No deploy server and no GitHub token - save to cache only
+        setStatus("ÒÑ±£´æµ½±¾µØ»º´æ£¨²¿Êğ·şÎñÆ÷Î´ÔËĞĞ£¬ÇëÔËĞĞ node deploy-server.js£©", "done");
         saveBtn.disabled = false;
-        saveBtn.textContent = "é‡è¯•å‘å¸ƒ";
+        saveBtn.textContent = "±£´æ²¢·¢²¼";
         deployInProgress = false;
+        return;
       }
-    }
-  }
-
-  // ---- Save button ----
-  if (saveBtn) {
-    saveBtn.addEventListener("click", doSaveAndDeploy);
-  }
-
-  // ---- Save & Exit button ----
-  var saveExitBtn = document.getElementById("admin-save-exit");
-  if (saveExitBtn) {
-    saveExitBtn.addEventListener("click", saveAndExit);
-  }
-
-  // ---- Summary dialog close ----
-  var summaryClose = document.getElementById("admin-summary-close");
-  if (summaryClose) {
-    summaryClose.addEventListener("click", function () {
-      var dlg = document.getElementById("admin-summary");
-      if (dlg) dlg.close();
-    });
-  }
-
-  // ---- applySavedChanges ----
-  function applySavedChanges() {
-    // Step 0: Restore images from IndexedDB (async)
-    loadImagesFromDB();
-
-    // Step 1: Restore text changes (synchronous, always works)
-    try {
-      var textRaw = localStorage.getItem("admin-text-changes");
-      if (!textRaw) return;
-      var textSaved = JSON.parse(textRaw);
-      if (!textSaved || !textSaved.text) return;
-
-      textSaved.text.forEach(function (item) {
-        var el = document.querySelector(item.key);
-        if (el) el.innerHTML = item.value;
-      });
+    };
 
       // Step 2: Restore artworks array and gallery card titles
       if (textSaved.artworks && Array.isArray(textSaved.artworks)) {
