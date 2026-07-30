@@ -1,0 +1,5 @@
+﻿deploy-server.js
+deploy.cmd
+*.py
+netlify/
+*.log

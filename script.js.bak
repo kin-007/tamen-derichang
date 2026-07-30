@@ -1,0 +1,606 @@
+// ── Load artworks from HTML data, fallback to defaults ──
+function loadArtworks() {
+  var script = document.getElementById("artworks-data");
+  if (script) {
+    try { return JSON.parse(script.textContent); } catch (e) {}
+  }
+  return [
+    {id:"01",source:"assets/photos/01.jpg",title:"晨光",caption:"清晨，房间还没有完全醒来。",layout:"tall",colors:["#9a6251","#e3b891","#f0dfca"]},
+    {id:"02",source:"assets/photos/02.jpg",title:"窗边",caption:"把没有说出口的话，留给光线。",layout:"landscape",colors:["#7f756a","#d8af8d","#f1ddca"]},
+    {id:"03",source:"assets/photos/03.jpg",title:"午后",caption:"阳光慢下来，影子也有了形状。",layout:"square",colors:["#b87b62","#e5b98e","#f4e3cd"]},
+    {id:"04",source:"assets/photos/04.jpg",title:"走出去",caption:"出门前，先确认自己正以怎样的表情面对世界。",layout:"tall",colors:["#79504b","#bf9176","#ead0b8"]},
+    {id:"05",source:"assets/photos/05.jpg",title:"停留",caption:"在一段空白里，练习不着急成为谁。",layout:"square",colors:["#8c7764","#cba885","#eee1d1"]},
+    {id:"06",source:"assets/photos/06.jpg",title:"傍晚的镜子",caption:"镜子不是答案，只是一场安静的相遇。",layout:"wide",colors:["#71464b","#b77c72","#e8c0a4"]},
+    {id:"07",source:"assets/photos/07.jpg",title:"回声",caption:"那些平凡的念头，仍在心里轻轻回响。",layout:"tall",colors:["#657070","#a7a18b","#ddd2bc"]},
+    {id:"08",source:"assets/photos/08.jpg",title:"小小的风",caption:"风经过的时候，刚好把今天吹得松一点。",layout:"square",colors:["#8a6e5b","#cc9476","#edd3b8"]},
+    {id:"09",source:"assets/photos/09.jpg",title:"路过",caption:"走过熟悉的地方，也像第一次认识自己。",layout:"landscape",colors:["#56635c","#a79877","#ded3ba"]},
+    {id:"10",source:"assets/photos/10.jpg",title:"沉静",caption:"把注意力交还给呼吸和眼前的这一刻。",layout:"square",colors:["#5d4c4a","#ad7f75","#e6c4ae"]},
+    {id:"11",source:"assets/photos/11.jpg",title:"夜色之前",caption:"天黑以前，仍有一些温柔值得被看见。",layout:"tall",colors:["#594552","#9c7a84","#d7c0bb"]},
+    {id:"12",source:"assets/photos/12.jpg",title:"回到日常",caption:"所有故事最后，都回到平静而真实的自己。",layout:"wide",colors:["#776559","#c49b78","#ebd5bc"]}
+  ];
+}
+
+var artworks = loadArtworks();
+
+const gallery = document.querySelector("#gallery-grid");
+const heroImage = document.querySelector("#hero-image");
+const lightbox = document.querySelector("#lightbox");
+const lightboxImage = document.querySelector("#lightbox-image");
+const lightboxIndex = document.querySelector("#lightbox-index");
+const lightboxTitle = document.querySelector("#lightbox-title");
+const lightboxCaption = document.querySelector("#lightbox-caption");
+const closeLightboxButton = document.querySelector("#close-lightbox");
+const previousArtworkButton = document.querySelector("#previous-artwork");
+const nextArtworkButton = document.querySelector("#next-artwork");
+
+let activeIndex = 0;
+let lastTrigger = null;
+
+function createPlaceholder(artwork, isWide = false) {
+  const width = isWide ? 1500 : 900;
+  const height = 1200;
+  const [dark, mid, light] = artwork.colors;
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="鑷媿浣滃搧 ${artwork.id} 寰呮浛鎹?>
+      <defs>
+        <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="${dark}" />
+          <stop offset="52%" stop-color="${mid}" />
+          <stop offset="100%" stop-color="${light}" />
+        </linearGradient>
+        <filter id="blur"><feGaussianBlur stdDeviation="42" /></filter>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#background)" />
+      <circle cx="${width * 0.75}" cy="${height * 0.22}" r="${height * 0.28}" fill="#fff4e9" opacity=".34" filter="url(#blur)" />
+      <ellipse cx="${width * 0.28}" cy="${height * 0.75}" rx="${width * 0.42}" ry="${height * 0.23}" fill="#2a1c1a" opacity=".18" filter="url(#blur)" />
+      <rect x="${width * 0.08}" y="${height * 0.08}" width="${width * 0.84}" height="${height * 0.84}" fill="none" stroke="#fff8f1" stroke-opacity=".55" stroke-width="2" />
+      <text x="${width * 0.12}" y="${height * 0.77}" fill="#fffaf5" font-size="${Math.max(34, width * 0.052)}" font-family="Georgia, serif" letter-spacing="3">SELF PORTRAIT ${artwork.id}</text>
+      <text x="${width * 0.12}" y="${height * 0.835}" fill="#fffaf5" fill-opacity=".8" font-size="${Math.max(20, width * 0.027)}" font-family="Arial, sans-serif" letter-spacing="5">PHOTO PLACEHOLDER</text>
+    </svg>`;
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
+function applyArtworkImage(image, artwork, options = {}) {
+  const { isWide = false, placeholderAlt = true } = options;
+  image.onerror = () => {
+    image.onerror = null;
+    image.src = createPlaceholder(artwork, isWide);
+    if (placeholderAlt) {
+      image.alt = `鑷媿浣滃搧 ${artwork.id} 鍗犱綅鍥撅紝寰呮浛鎹负浣犵殑鐓х墖`;
+    }
+  };
+  image.src = artwork.source;
+  image.alt = `鑷媿浣滃搧 ${artwork.id}锛?{artwork.title}`;
+}
+
+function renderGallery() {
+  const fragment = document.createDocumentFragment();
+
+  artworks.forEach((artwork, index) => {
+    const item = document.createElement("li");
+    item.className = `gallery-card gallery-card--${artwork.layout}`;
+
+    const button = document.createElement("button");
+    button.className = "gallery-card__button";
+    button.type = "button";
+    button.setAttribute("aria-haspopup", "dialog");
+    button.setAttribute("aria-label", `鎵撳紑浣滃搧 ${artwork.id}锛?{artwork.title}`);
+
+    const image = document.createElement("img");
+    image.loading = index < 3 ? "eager" : "lazy";
+    image.decoding = "async";
+    applyArtworkImage(image, artwork, { isWide: artwork.layout !== "tall" });
+
+    const meta = document.createElement("span");
+    meta.className = "gallery-card__meta";
+    meta.innerHTML = `
+      <span>
+        <span class="gallery-card__number">${artwork.id} / ${String(artworks.length).padStart(2, "0")}</span>
+        <span class="gallery-card__title">${artwork.title}</span>
+      </span>
+      <span class="gallery-card__hint" aria-hidden="true">+</span>
+    `;
+
+    button.append(image, meta);
+    button.addEventListener("click", () => openLightbox(index, button));
+    item.append(button);
+    fragment.append(item);
+  });
+
+  gallery.append(fragment);
+}
+
+function renderLightbox(index) {
+  const artwork = artworks[index];
+  activeIndex = index;
+  lightboxIndex.textContent = `${artwork.id} / ${String(artworks.length).padStart(2, "0")}`;
+  lightboxTitle.textContent = artwork.title;
+  lightboxCaption.textContent = artwork.caption;
+  applyArtworkImage(lightboxImage, artwork, {
+    isWide: true,
+    placeholderAlt: false,
+  });
+}
+
+function openLightbox(index, trigger) {
+  lastTrigger = trigger;
+  renderLightbox(index);
+  document.body.classList.add("has-dialog");
+
+  if (!lightbox.open) {
+    lightbox.showModal();
+  }
+
+  closeLightboxButton.focus();
+}
+
+function closeLightbox() {
+  if (lightbox.open) {
+    lightbox.close();
+  }
+}
+
+function showRelativeArtwork(direction) {
+  const nextIndex = (activeIndex + direction + artworks.length) % artworks.length;
+  renderLightbox(nextIndex);
+}
+
+applyArtworkImage(heroImage, artworks[0], { isWide: false });
+renderGallery();
+
+closeLightboxButton.addEventListener("click", closeLightbox);
+previousArtworkButton.addEventListener("click", () => showRelativeArtwork(-1));
+nextArtworkButton.addEventListener("click", () => showRelativeArtwork(1));
+
+lightbox.addEventListener("click", (event) => {
+  if (event.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+lightbox.addEventListener("close", () => {
+  document.body.classList.remove("has-dialog");
+  lastTrigger?.focus();
+});
+
+window.addEventListener("keydown", (event) => {
+  if (!lightbox.open) {
+    return;
+  }
+
+  if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    showRelativeArtwork(-1);
+  }
+
+  if (event.key === "ArrowRight") {
+    event.preventDefault();
+    showRelativeArtwork(1);
+  }
+});
+
+/* ============================================
+   ADMIN MODE 鈥?Login, Edit & Auto-Deploy
+   ============================================ */
+(function () {
+  "use strict";
+
+  const ADMIN_USER = "admin";
+  const ADMIN_PASS = "admin2026";
+
+  const NF_TOKEN  = "nfp_ZihhcB4Yegg3MHXPY2ZMJiLKWdT6QNWff58b";
+  const NF_SITE   = "aa80fdc1-ee5f-4ca5-905a-b52080907d60";
+  const NF_SITE_URL = "https://tamen-derichang.netlify.app";
+
+  let isAdmin = false;
+  const textChanges = new Map();
+  const imageChanges = new Map();
+  let deployInProgress = false;
+
+  const loginDlg  = document.getElementById("admin-login");
+  const loginForm = document.getElementById("admin-login-form");
+  const userInp   = document.getElementById("admin-user");
+  const passInp   = document.getElementById("admin-pass");
+  const errEl     = document.getElementById("admin-login-error");
+  const cancelBtn = document.getElementById("admin-login-cancel");
+  const adminBar  = document.getElementById("admin-bar");
+  const saveBtn   = document.getElementById("admin-save");
+  const logoutBtn = document.getElementById("admin-logout");
+  const statusEl  = document.getElementById("admin-status");
+
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    errEl.textContent = "";
+    if (userInp.value === ADMIN_USER && passInp.value === ADMIN_PASS) {
+      isAdmin = true;
+      loginDlg.close();
+      enterAdminMode();
+    } else {
+      errEl.textContent = "账号或密码错误";
+      passInp.value = "";
+      passInp.focus();
+    }
+  });
+
+  cancelBtn.addEventListener("click", function () { loginDlg.close(); });
+
+  // Login button in nav
+  var loginBtn = document.getElementById("admin-login-btn");
+  if (loginBtn) {
+    loginBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (!isAdmin) {
+        userInp.value = ""; passInp.value = ""; errEl.textContent = "";
+        loginDlg.showModal(); userInp.focus();
+      } else {
+        leaveAdminMode();
+      }
+    });
+  }
+
+  // Wordmark also opens login (single click when not admin, toggle when admin)
+  var wm = document.querySelector(".wordmark");
+  if (wm) {
+    wm.addEventListener("click", function (e) {
+      if (!isAdmin) {
+        e.preventDefault();
+        userInp.value = ""; passInp.value = ""; errEl.textContent = "";
+        loginDlg.showModal(); userInp.focus();
+      } else {
+        leaveAdminMode();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey && e.shiftKey && e.key === "A") {
+      e.preventDefault();
+      if (isAdmin) leaveAdminMode();
+      else { userInp.value = ""; passInp.value = ""; errEl.textContent = "";
+             loginDlg.showModal(); userInp.focus(); }
+    }
+  });
+
+  function enterAdminMode() {
+    adminBar.hidden = false;
+    setStatus("就绪", "idle");
+    enableTextEditing();
+    enableImageEditing();
+    if (loginBtn) { loginBtn.textContent = "退出"; }
+  }
+
+  function leaveAdminMode() {
+    isAdmin = false;
+    adminBar.hidden = true;
+    textChanges.clear();
+    imageChanges.clear();
+    disableTextEditing();
+    disableImageEditing();
+    if (loginBtn) { loginBtn.textContent = "登录"; }
+  }
+
+  logoutBtn.addEventListener("click", leaveAdminMode);
+
+  function setStatus(msg, type) {
+    if (statusEl) {
+      statusEl.textContent = msg;
+      statusEl.className = "admin-bar__status admin-bar__status--" + (type || "idle");
+    }
+  }
+
+  var TEXT_FIELDS = [
+    { sel: ".hero__copy .eyebrow",            label: "副标题" },
+    { sel: "#site-title",                     label: "主标题" },
+    { sel: ".hero__intro",                    label: "简介" },
+    { sel: ".hero__signature",                label: "签名" },
+    { sel: "#gallery-title",                  label: "画廊标题" },
+    { sel: ".section-description",            label: "画廊描述" },
+    { sel: "#statement-title",                label: "自述标题" },
+    { sel: ".statement__body > p:nth-of-type(2)", label: "自述正文1" },
+    { sel: ".statement__body > p:nth-of-type(3)", label: "自述正文2" },
+    { sel: ".statement__signature",           label: "鑷堪签名" },
+    { sel: ".site-footer span:first-child",   label: "页脚标题" },
+  ];
+
+  function enableTextEditing() {
+    TEXT_FIELDS.forEach(function (item) {
+      var el = document.querySelector(item.sel);
+      if (!el) return;
+      el.contentEditable = "true";
+      el.classList.add("admin-editable");
+      el.title = "点击编辑 " + item.label;
+      if (textChanges.has(item.sel)) el.innerHTML = textChanges.get(item.sel);
+      el.addEventListener("input", function () {
+        textChanges.set(item.sel, el.innerHTML);
+      });
+    });
+    document.querySelectorAll(".gallery-card__title").forEach(function (el, i) {
+      if (el.closest(".admin-editable")) return;
+      el.contentEditable = "true";
+      el.classList.add("admin-editable");
+      el.title = "点击编辑作品标题";
+      el.addEventListener("input", function () {
+        var newTitle = el.textContent;
+        if (artworks[i]) artworks[i].title = newTitle;
+        textChanges.set("gallery-title-" + i, newTitle);
+      });
+    });
+  }
+
+  function disableTextEditing() {
+    document.querySelectorAll(".admin-editable").forEach(function (el) {
+      el.contentEditable = "false";
+      el.classList.remove("admin-editable");
+      el.title = "";
+    });
+  }
+
+  function enableImageEditing() {
+    wrapImage(document.getElementById("hero-image"), "hero-image");
+    document.querySelectorAll(".gallery-card__button img").forEach(function (img, i) {
+      wrapImage(img, "gallery-" + i);
+    });
+    wrapImage(document.getElementById("lightbox-image"), "lightbox-image");
+  }
+
+  function disableImageEditing() {
+    document.querySelectorAll(".admin-image-wrap").forEach(function (w) {
+      var img = w.querySelector("img");
+      var p = w.parentNode;
+      if (img && p) { p.insertBefore(img, w); p.removeChild(w); }
+    });
+    document.querySelectorAll(".admin-file-input").forEach(function (inp) { inp.remove(); });
+  }
+
+  function wrapImage(img, key) {
+    if (!img || img.closest(".admin-image-wrap")) return;
+    var wrap = document.createElement("span");
+    wrap.className = "admin-image-wrap";
+    img.parentNode.insertBefore(wrap, img);
+    wrap.appendChild(img);
+
+    var overlay = document.createElement("span");
+    overlay.className = "admin-image-overlay";
+    overlay.textContent = "鏇存崲鍥剧墖";
+    wrap.appendChild(overlay);
+
+    var input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.className = "admin-file-input";
+    input.style.display = "none";
+    document.body.appendChild(input);
+
+        input.addEventListener("change", function () {
+      var file = input.files && input.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var dataUrl = e.target.result;
+        img.src = dataUrl;
+        var ext = (file.name.match(/\.(\w+)$/) || [,"jpg"])[1];
+        var newName = "upload_" + Date.now() + "_" + Math.random().toString(36).slice(2,6) + "." + ext;
+        var newPath = "assets/photos/" + newName;
+        imageChanges.set(key, { file: file.name, dataUrl: dataUrl, newPath: newPath });
+        overlay.textContent = file.name + " \u2713";
+        if (key === "hero-image" && artworks[0]) {
+          artworks[0].source = newPath;
+        } else if (key && key.startsWith("gallery-")) {
+          var idx = parseInt(key.replace("gallery-", ""), 10);
+          if (artworks[idx]) artworks[idx].source = newPath;
+        }
+      };
+      reader.readAsDataURL(file);
+      input.value = "";
+    });
+
+    overlay.addEventListener("click", function () { input.click(); });
+  }
+
+  function sha256Hex(data) {
+    var buf = (typeof data === "string")
+      ? new TextEncoder().encode(data)
+      : new Uint8Array(data);
+    return crypto.subtle.digest("SHA-256", buf).then(function (hash) {
+      return Array.from(new Uint8Array(hash)).map(function (b) {
+        return b.toString(16).padStart(2, "0");
+      }).join("");
+    });
+  }
+
+  function dataUrlToBytes(dataUrl) {
+    var parts = dataUrl.split(",");
+    var raw = atob(parts[1]);
+    var arr = new Uint8Array(raw.length);
+    for (var i = 0; i < raw.length; i++) arr[i] = raw.charCodeAt(i);
+    return arr;
+  }
+
+  function dataUrlExt(dataUrl) {
+    var mime = dataUrl.split(";")[0].split(":")[1];
+    return { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" }[mime] || "jpg";
+  }
+
+  async function fetchSiteFiles() {
+    var files = {};
+    var htmlResp = await fetch(NF_SITE_URL + "/index.html");
+    files["index.html"] = await htmlResp.text();
+    var cssResp = await fetch(NF_SITE_URL + "/styles.css");
+    files["styles.css"] = await cssResp.text();
+    var jsResp = await fetch(NF_SITE_URL + "/script.js");
+    var jsText = await jsResp.text();
+    var adminIdx = jsText.indexOf("ADMIN MODE");
+    if (adminIdx > 0) {
+      var commentStart = jsText.lastIndexOf("/*", adminIdx);
+      if (commentStart >= 0) jsText = jsText.substring(0, commentStart).trimEnd();
+    }
+    files["script.js"] = jsText;
+    return files;
+  }
+
+    function applyTextEdits(files) {
+    var html = files["index.html"];
+    var artworksJson = JSON.stringify(artworks);
+    var dataRe = /<script id="artworks-data"[^>]*>[\s\S]*?<\/script>/;
+    var dataTag = '<script id="artworks-data" type="application/json">\\n' + artworksJson + '\\n  </script>';
+    html = html.replace(dataRe, dataTag);
+    textChanges.forEach(function (newHtml, selector) {
+      if (selector.startsWith("gallery-title-")) return;
+      var temp = document.createElement("div");
+      temp.innerHTML = html;
+      var el = temp.querySelector(selector);
+      if (el) {
+        el.innerHTML = newHtml;
+        html = temp.innerHTML;
+      }
+    });
+    if (imageChanges.has("hero-image")) {
+      var info = imageChanges.get("hero-image");
+      if (info.newPath) {
+        html = html.replace(/id="hero-image"[^>]*src="[^"]+"/, 'id="hero-image" src="' + info.newPath + '"');
+      }
+    }
+    files["index.html"] = html;
+  }
+
+  async function apiFetch(path, opts) {
+    opts = opts || {};
+    var url = "https://api.netlify.com/api/v1/" + path;
+    var headers = { "Authorization": "Bearer " + NF_TOKEN };
+    if (opts.body && !(opts.contentType === "auto")) {
+      headers["Content-Type"] = opts.contentType || "application/json";
+    }
+    var resp = await fetch(url, {
+      method: opts.method || "GET",
+      headers: headers,
+      body: opts.body || undefined
+    });
+    if (!resp.ok) {
+      var errText = await resp.text();
+      throw new Error("API " + resp.status + ": " + errText.slice(0, 200));
+    }
+    return resp.status === 204 ? null : resp.json();
+  }
+
+  async function doSaveAndDeploy() {
+    if (deployInProgress) return;
+    deployInProgress = true;
+    saveBtn.disabled = true;
+    saveBtn.textContent = "发布中...";
+    setStatus("正在发布...", "busy");
+
+    try {
+      setStatus("获取当前文件...", "busy");
+      var files = await fetchSiteFiles();
+
+      setStatus("应用文案更改...", "busy");
+      if (textChanges.size > 0) applyTextEdits(files);
+
+      setStatus("计算文件摘要...", "busy");
+      var manifest = {};
+      for (var path in files) {
+        manifest[path] = await sha256Hex(files[path]);
+      }
+
+      var imageFilePaths = {};
+      if (imageChanges.size > 0) {
+        imageChanges.forEach(function (val, key) {
+          var fpath = val.newPath;
+          if (!fpath) {
+            var ext = dataUrlExt(val.dataUrl);
+            fpath = "assets/photos/upload_" + Date.now() + "." + ext;
+          }
+          imageFilePaths[fpath] = val;
+          manifest[fpath] = sha256Hex(dataUrlToBytes(val.dataUrl));
+        });
+      }
+
+      setStatus("创建部署...", "busy");
+      var deploy = await apiFetch("sites/" + NF_SITE + "/deploys", {
+        method: "POST",
+        body: JSON.stringify({ files: manifest }),
+        contentType: "application/json"
+      });
+      var deployId = deploy.id;
+      var required = deploy.required || [];
+
+      if (required.length > 0) {
+        setStatus("上传文件...", "busy");
+        var shaMap = {};
+        for (var path in files) {
+          var sha = manifest[path];
+          shaMap[sha] = { path: path, content: typeof files[path] === "string"
+            ? new TextEncoder().encode(files[path]) : files[path] };
+        }
+        for (var fpath in imageFilePaths) {
+          var sha = manifest[fpath];
+          shaMap[sha] = { path: fpath, content: dataUrlToBytes(imageFilePaths[fpath].dataUrl) };
+        }
+        for (var i = 0; i < required.length; i++) {
+          var sha = required[i];
+          var info = shaMap[sha];
+          if (!info) continue;
+          var uploadUrl = deploy.deploy_url + "/files/" + encodeURIComponent(info.path);
+          var upResp = await fetch(uploadUrl, {
+            method: "PUT",
+            headers: { "Authorization": "Bearer " + NF_TOKEN, "Content-Type": "application/octet-stream" },
+            body: info.content
+          });
+          if (!upResp.ok) throw new Error("Upload failed for " + info.path);
+        }
+      }
+
+      setStatus("最终确认...", "busy");
+      var finalUrl = "https://api.netlify.com/api/v1/deploys/" + deployId;
+      var finalResp = await fetch(finalUrl, {
+        method: "POST",
+        headers: { "Authorization": "Bearer " + NF_TOKEN, "Content-Type": "application/json" },
+        body: "{}"
+      });
+      if (!finalResp.ok) {
+        if (finalResp.status === 404) {
+          var finalResp2 = await fetch(deploy.deploy_url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: "{}"
+          });
+          if (!finalResp2.ok) throw new Error("Finalize failed");
+        } else {
+          throw new Error("Finalize failed: " + (await finalResp.text()).slice(0, 100));
+        }
+      }
+
+      setStatus("发布成功! 即将刷新...", "done");
+      await new Promise(function (r) { setTimeout(r, 5000); });
+      textChanges.clear();
+      imageChanges.clear();
+      location.reload();
+
+    } catch (err) {
+      setStatus("发布失败: " + err.message, "error");
+      saveBtn.disabled = false;
+      saveBtn.textContent = "重试发布";
+      deployInProgress = false;
+    }
+  }
+
+  saveBtn.addEventListener("click", doSaveAndDeploy);
+
+  // Summary dialog close
+  var summaryClose = document.getElementById("admin-summary-close");
+  if (summaryClose) {
+    summaryClose.addEventListener("click", function () {
+      var dlg = document.getElementById("admin-summary");
+      if (dlg) dlg.close();
+    });
+  }
+
+})();
+
+
+
+
+
+
+
